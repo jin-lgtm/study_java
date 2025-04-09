@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Ex250409 {
 	public static void main(String[] args) {
+		// 수정
 		// 1.로그인 인증
 		// 사용자로 부터 아이디와 비밀번호를 입력 받고
 		// 그 아이디가 admin, 비밀번호가 1234 일때 로그인 성공
@@ -62,7 +63,7 @@ public class Ex250409 {
 				month = "가을";
 				break;
 			default :
-				month = "잘못입력"
+				month = "잘못입력";
 		}
 		
 		
