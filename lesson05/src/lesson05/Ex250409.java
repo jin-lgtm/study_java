@@ -1,10 +1,9 @@
-<<<<<<< HEAD
-//package lesson05;
-//
-//import java.util.Scanner;
-//
-//public class Ex250409 {
-//	public static void main(String[] args) {
+package lesson05;
+
+import java.util.Scanner;
+
+public class Ex250409 {
+	public static void main(String[] args) {
 //		// 책 79페이지 3번문제
 //		// 27명 5다스 dozen(12)
 //		int colorPen = 5 * 12;
@@ -51,7 +50,7 @@
 //		// 그 아이디가 admin, 비밀번호가 1234 일때 로그인 성공
 //		// 아이디가 admin 비밀번호가 틀렸을때 로그인 실패 > 잘못된 번호
 //		// 아이디가 admin이 아니면 없는 계정 메세지 출력
-//		Scanner scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 //		String id = "";
 //		String pw = "";
 //		System.out.println("아이디를 입력하세요 : ");
@@ -171,20 +170,20 @@
 //		
 //	}
 //}
-=======
-package lesson05;
+//=======
+//package lesson05;
+//
+//import java.util.Scanner;
 
-import java.util.Scanner;
-
-public class Ex250409 {
-	public static void main(String[] args) {
+//public class Ex250409 {
+//	public static void main(String[] args) {
 		// 수정
 		// 1.로그인 인증
 		// 사용자로 부터 아이디와 비밀번호를 입력 받고
 		// 그 아이디가 admin, 비밀번호가 1234 일때 로그인 성공
 		// 아이디가 admin 비밀번호가 틀렸을때 로그인 실패 > 잘못된 번호
 		// 아이디가 admin이 아니면 없는 계정 메세지 출력
-		Scanner scanner = new Scanner(System.in);
+//		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("아이디를 입력하세요 : ");
 		String userId = scanner.nextLine();
@@ -192,21 +191,21 @@ public class Ex250409 {
 		System.out.println("비밀번호를 입력하세요 : ");
 		String userPw = scanner.nextLine();
 
-		if(admin == userId && 1234 == userPw) {
-			System.out.println("로그인 성공");
-		}
-		else if(admin == userId && 1234 != userPw) {
-			System.out.println("로그인 실패 : 잘못된 번호");
-		}
-		if(admin != userId) {
-			System.out.println("로그인 실패 : 없는 계정");
-		}
-		
+//		if(admin == userId && 1234 == userPw) {
+//			System.out.println("로그인 성공");
+//		}
+//		else if(admin == userId && 1234 != userPw) {
+//			System.out.println("로그인 실패 : 잘못된 번호");
+//		}
+//		if(admin != userId) {
+//			System.out.println("로그인 실패 : 없는 계정");
+//		}
+//		
 		
 		// 2. 숫자 하나를 입력받아서
 		// 3의 배수 그리고 짝수 여부를 동시판별
 		// 3의 배수 , 짝수, 3의 배수이면서 짝수, 둘다 아닌경우
-		Scanner scanner = new Scanner(System.in);
+//		Scanner scanner = new Scanner(System.in);
 		
 		System.out.println("숫자를 입력하세요 : ");
 	 	int num = scanner.nextInt();
@@ -226,7 +225,7 @@ public class Ex250409 {
 		
 		// 3. 월(month)을 입력받아서 계절을 출력
 		// 예시  3~5월은 봄
-		Scanner scanner = new Scanner(System.in);
+//		Scanner scanner = new Scanner(System.in);
 		
 		System.out.println(" 월을 입력  : ");
 		int month = scanner.nextInt();
@@ -237,19 +236,20 @@ public class Ex250409 {
 			season = "봄";
 		}
 		else if (month >= 6 && month <= 8) {
-			seson = "여름";
+			season = "여름";
 		}
 		else if (month >= 9 && month <= 11) {
-			seson = "가을";
+			season = "가을";
 		}
 		else if (month == 12 || month == 1 || month ==2) {
-			seson = "겨울"
+			season = "겨울";
 		}
 		else {
-			seson = " 잘못 입력 "
+			season = " 잘못 입력 ";
 		}
-		System.out.println(" 계절  : " + seson);		
+		System.out.println(" 계절  : " + season);		
 		
 	}
+
 }
->>>>>>> 311d8302aad4f78e1a9244b34c4ef79b3115fbd1
+
