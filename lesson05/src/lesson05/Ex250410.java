@@ -8,13 +8,7 @@ public class Ex250410 {
 		// (연산자만 사용)
 		int apple = 123;
 		int box = 10;
-//		int result = apple / box;
-//		if (apple % box == 0) {
-//			System.out.println(result);
-//		}
-//		else {
-//			System.out.println(result += 1);
-//		}
+
 		System.out.println(apple / box + apple % box == 0 ? 0 : 1);
 		System.out.println((apple + 9) / box);
 		
@@ -24,23 +18,8 @@ public class Ex250410 {
 		// 반복문 사용
 		// 2500 + -(2550)
 		
-//		int sum = 0;
-//		int sum1 = 0;
-//		for(int i = 1 ; i <= 99 ; i += 2 ) {
-//			sum = i;
-//			for(int j = -2 ; j <= -100 ; j += -2) {
-//				sum1 = j;
-//			}
-//		System.out.println(sum + sum1);
-		
 		int sum = 0;
 		for(int i = 1; i <= 100 ; i++) {
-//			if(i % 2 == 0) {
-//				sum += -i;
-//			}
-//			else {
-//				sum += i;
-//			}
 			sum += i % 2 == 0 ? -i : i;
 		}
 		System.out.println(sum);
