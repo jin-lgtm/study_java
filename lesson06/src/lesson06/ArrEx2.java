@@ -1,4 +1,4 @@
-package lesson6;
+package lesson06;
 
 public class ArrEx2 {
 	public static void main(String[] args) {

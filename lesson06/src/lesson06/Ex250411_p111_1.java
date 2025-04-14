@@ -1,4 +1,4 @@
-package lesson6;
+package lesson06;
 
 public class Ex250411_p111_1 {
 	public static void main(String[] args) {
@@ -9,9 +9,6 @@ public class Ex250411_p111_1 {
 		for(int i = 1 ; i <= 100 ; i++) {
 			if( i % 5 == 0) {
 				sum = sum + i;
-			}
-			else {
-				 
 			}
 		}
 		System.out.println("5의 배수의 합계는 : " +sum);

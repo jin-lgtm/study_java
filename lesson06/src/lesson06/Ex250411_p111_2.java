@@ -1,4 +1,4 @@
-package lesson6;
+package lesson06;
 
 public class Ex250411_p111_2 {
 	public static void main(String[] args) {
@@ -10,10 +10,10 @@ public class Ex250411_p111_2 {
 		
 		for(int i=1 ; i <= 100 ; i++) {
 			if(i % 2 == 0) {
-				evenSum = evenSum + i;
+				evenSum = evenSum + i; // evenSum += i
 			}
 			else {
-				oddSum = oddSum + i;
+				oddSum = oddSum + i;  // oddSum += i
 			}
 		}
 		System.out.println("짝수의 합계는 : " + evenSum);

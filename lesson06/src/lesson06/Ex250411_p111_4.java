@@ -1,4 +1,4 @@
-package lesson6;
+package lesson06;
 
 public class Ex250411_p111_4 {
 	public static void main(String[] args) {
@@ -9,11 +9,16 @@ public class Ex250411_p111_4 {
 //	***
 //	****
 //	*****
-	for(int i = 1 ; i <= 5 ; i++) {
-		for(int j=1 ; j <= i ; j++) {
-			System.out.print("*");
+	for(int i = 0 ; i < 5 ; i++) {
+//		for(int j= 0 ; j <= i ; j++) {
+		for(int j = 0 ; j < 5 ; j++) {
+			if(j <= i)
+			System.out.printf("(%d,%d)", i, j);
+		}
+//		    else {
+//			System.out.printf("%5c", '');
 		}
 		System.out.println();
 		}
-	}
+	
 }
