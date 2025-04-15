@@ -1,0 +1,31 @@
+package lesson07_2;
+
+public class MemberMain {
+	public static void main(String[] args) {
+		// this -> 미래에 생성될 객체의 주소값
+		
+		Member m = new Member(20); // new => 생성자 호출
+		System.out.println(m.num);
+		System.out.println(m);
+		
+		Member member = m.m1();
+		System.out.println(member);
+		
+		m.m2(m);
+	}
+}
+
+class Member {
+	int num = 10;
+	Member(int num){       // Member type 생성자
+		this.num = num;
+	}
+	
+	Member m1() {
+		return this;
+	}
+	
+	void m2(Member m) {
+		System.out.println(m);
+	}
+}

@@ -7,21 +7,24 @@ public class Ex250414_1 {
 		// 피보나치 수열 숫자 20개 출력
 	    // 규칙 첫 두자리 숫자의 합이 다음 숫자의 합. 그 다음 숫자는 이전 두 숫자의 합의 연속.
 		//  1 1 2 3 5 8 13 21 44 65 109 ....
-		int n = 20;
-		int[] number = new int[n];
-		
-		number[0] = 1;
-		number[1] = 1;
-		
-		number[2] = number[0] + number[1];
-		
-		for(int i = 3 ; i < n ; i++) {
-			number[i] = number[i - 1] + number[i - 2];
+		int a = 1;
+		int b = 1;
+		System.out.print(" 1 1 ");
+		for(int i = 0 ; i < 20 ; i++) {
+			int c = a + b; // 2
+			System.out.print(c + " ");
+			a = b; // 1
+			b = c; // 2
 		}
 		
-		System.out.print("피보나치 수열 : ");
-		for(int num : number) {
-			System.out.print(num + " ");
-		}
+		
+		/*
+		 * 1 1 2
+		 *   1 2 3
+		 *     2 3 5 
+		 * 
+		 */
+		
+	
 	}
 }
