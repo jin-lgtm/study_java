@@ -16,16 +16,27 @@ public class Student {
 	int eng;
 	int mat;
 	
-	Student stu = new Student(no, name, kor, eng, mat);
+//	int total = kor + eng + mat;
 	
-	Student(int n, String na, int k, int e, int m){
-		no = n;
-		name = na;
-		kor = k;
-		eng = e;
-		mat = m;
+	Student() {} //  => 기본생성자
+	
+	Student(int no, String name){  // => (학번 , 이름)
+		this.no = no;
+		this.name = name;
 	}
 	
+	Student(int no, String name, int kor, int eng, int mat){  // => 다섯개의 필드사용
+		this(no, name);
+		this.kor = kor;
+		this.eng = eng;
+		this.mat = mat;
+	}
+	int total() {
+		return kor+eng+mat;
+	}
 	
-	
+	// 1. 평균계산 (double)
+	double avr() {
+		return (kor+eng+mat)/3;
+	}
 }

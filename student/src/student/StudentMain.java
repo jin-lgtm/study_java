@@ -10,13 +10,7 @@ public class StudentMain {
 //		System.out.println(StudentUtils.nextInt("숫자를 입력하세요 > "));
 
 		StudentService service = new StudentService();
-//		Student stu = new Student(1, "김", 50, 60, 70);
-//		
-//		System.out.println(stu.no);
-//		System.out.println(stu.name);
-//		System.out.println(stu.kor);
-//		System.out.println(stu.eng);
-//		System.out.println(stu.mat);
+
 		
 		System.out.println("============= 학생 점수 관리 프로그램 ===========");
 		
