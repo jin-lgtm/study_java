@@ -36,7 +36,7 @@ public class Student {
 	}
 	
 	// 1. 평균계산 (double)
-	double avr() {
-		return (kor+eng+mat)/3;
+	double avg() {
+		return total() / 3d;
 	}
 }
