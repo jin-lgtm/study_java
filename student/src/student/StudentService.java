@@ -3,27 +3,63 @@ package student;
 import java.util.Arrays;
 
 public class StudentService {
-	Student[] students = new Student[2]; // Student[10] {null, null, null......null} : null 10개 들어간 상태
+	
+	// 1. 모든 필드, 메서드, 생성자 > 접근제한자
+	// 1-1. 필드 private, 메서드 public, 생성자 public
+	// 1-2. getter, setter
+	// 2. 어떤 값을 입력하더라도 예외 처리 (프로그램 종료는 정상종료)
+	// 3. 점수값 입력의 범위 0~100 사이만 인정
+	// 4. 이름 입력은 한글만 인정, 2글자 ~ 4글자 사이
+	// 5. 임시데이터의 점수값을 랜덤으로 배정(60~100)
+	// 6. 도형 lesson8.shape : 삼각형 추가. 원기둥,육면체,삼각기둥(프리즘) => 겉넓이,부피 구하기
+	
+	Student[] students = new Student[4]; // Student[10] {null, null, null......null} : null 10개 들어간 상태
+	Student[] sortedStudents = new Student[students.length];  //  정렬
 	int count;  // (학생수)초기값이 0 이므로 int count = 0 이라고 안함
 
 	// 초기화 블럭
 	{
 		students[count++] = new Student(1, "개똥이", 90, 80, 90);
-		students[count++] = new Student(2, "새똥이", 80, 90, 90);
+		students[count++] = new Student(2, "새똥이", 80, 80, 90);
+		students[count++] = new Student(3, "말똥이", 10, 80, 90);
+		students[count++] = new Student(4, "소똥이", 100, 100, 90);
+		
+//		sortedStudents = Arrays.copyOf(students, students.length);
+		sortedStudents = students.clone();
+		rank();
 	}
 	
-	
+	// 입력 : 학번
+	// 출력 : 학생
+	Student findBy(int no) {
+		Student student = null;
+		for(int i = 0 ; i < count ; i++) {
+			if(students[i].no == no) {
+				student = students[i];
+				break;
+			}
+		}
+		return student;
+	}
 	
 	
 	// 2. 수정 및 삭제 구현
 	// 3. 배열의 길이를 넘는 추가 학생 등록시 배열 길이 늘리기
 	
 	// 등록
-	void register() {
+	public void register() {
 		System.out.println("등록 기능");
 		// 학생 생성
 		// 학번, 이름, 국어, 영어, 수학
 		int no = StudentUtils.nextInt("학번 > ");
+		
+		Student s = findBy(no);
+		
+		if(s != null) {
+			System.out.println("중복된 학번이 존재합니다.");
+			return;
+			
+		}
 		String name = StudentUtils.nextLine("이름 > ");
 		int kor = StudentUtils.nextInt("국어 > ");
 		int eng = StudentUtils.nextInt("영어 > ");
@@ -31,59 +67,152 @@ public class StudentService {
 		if(students.length == count) {
 			students = Arrays.copyOf(students, students.length *2);
 		}
-		students[count++] = new Student(no, name, kor, eng, mat);				
+		students[count++] = new Student(no, name, kor, eng, mat);			
+		sortedStudents = Arrays.copyOf(students, students.length);
+		rank();
 	}
 	
 	// 조회
-	void read() {
+	public void read() {
 		System.out.println("조회 기능");
-		for(int i = 0 ; i < count ; i++) {
-			System.out.println(students[i].no + ", "+ students[i].name +"," + students[i].total() + ", " + students[i].avg());
+		print(students);
+//		for(int i = 0 ; i < count ; i++) {
+//			System.out.println(students[i].no + ", "+ students[i].name +"," + students[i].total() + ", " + students[i].avg());
+//		}
 		}
+	
+	public void readOrder() {
+		System.out.println("석차순 조회 기능");
+		print(sortedStudents);
 	}
 	
+	public void print(Student[] stu) {
+		for(int i = 0 ; i < count ; i++) {
+			System.out.println(stu[i]);
+		}
+	}
 	// 수정
-	void modify() {
+	public void modify() {
 		System.out.println("수정 기능");
 		// 학생들 배열에서 입력받은 학번과 일치하는 학생
 		int no = StudentUtils.nextInt("수정할 학생의 학번 >");
-		Student s = null; // 초기값 지정
-		for(int i = 0 ; i < count ; i++) {
-			if(students[i].no == no) {
-				s = students[i];
-				break;
-			}
+		Student s = findBy(no);
+		if(s == null) {
+			System.out.println("입력된 학번이 존재하지 않습니다");
+			return;
 		}
 		s.name = StudentUtils.nextLine("이름 > ");
 		s.kor = StudentUtils.nextInt("국어 > ");
 		s.eng = StudentUtils.nextInt("영어 > ");
 		s.mat = StudentUtils.nextInt("수학 > ");
 		
+		sortedStudents = Arrays.copyOf(students, students.length);
+//		sortedStudents = students.clone();
+		rank();
+		
 	}
 	
 	// 삭제
-	void remove() {
+	public void remove() {
 		System.out.println("삭제 기능"); // 배열의 이동으로 덮어써서 삭제
 		int no = StudentUtils.nextInt("삭제할 학생의 학번 > ");
-		for (int i = 0; i < count; i++) {
-			if (students[i].no == no) {
-				System.arraycopy(students, i + 1, students, i, count-- - 1 - i);
+		Student s = findBy(no);
+		if (s == null) {
+			System.out.println("입력된 학번이 존재하지 않습니다");;
+			return;
+		}
+		
+		for(int i = 0 ; i  < count ; i++) {
+			if(students[i].no == no) {
+				System.arraycopy(students, i+1, students, i, count-- -1 - i);
 				break;
 			}
 		}
+		sortedStudents = Arrays.copyOf(students, students.length);
+		rank();
 	}
 	
-	//  1. 중복학번 학생 등록 방지
+	// 국어, 영어, 수학, 전체평균
+	public void allAvg() {
+		double avgKor = 0;
+		double avgEng = 0;
+		double avgMat = 0;
+		double avgAll = 0;
+		
+		// count (총점)
+		for(int i = 0 ; i < count ; i++) {
+			avgKor = students[i].kor;
+			avgEng = students[i].eng;
+			avgMat = students[i].mat;
+			
+		}
+		avgKor /= (double) count;
+		avgEng /= (double) count;
+		avgMat /= (double) count;
+		
+		avgAll = (avgKor + avgEng + avgMat) / 3;
+		
+		System.out.println(count + "명의 학생 평균");
+		System.out.println("국어 평균 " + avgKor);
+		System.out.println("영어 평균 " + avgEng);
+		System.out.println("수학 평균 " + avgMat);
+		System.out.println("전체 평균 " + avgAll);
+		
+		
+	}
+	
+	// 석차 정렬
+	public void rank() {
+		
+		for(int i = 0 ; i < count - 1 ; i++) {
+			int idx = i;
+			for(int j = 1 + i ; j < count ; j++) {   
+				if(sortedStudents[idx].total() < sortedStudents[j].total()) {
+					idx = j;
+				}
+			}
+			Student tmp = sortedStudents[i];
+			sortedStudents[i] = sortedStudents[idx];
+			sortedStudents[idx] = tmp;
+		
+		}
+	}
+	
+	
+	//  1. 중복학번 학생 등록 방지 (학번을 기준으로 학생의 존재 여부)
 	//  2. 과목별 평균값 출력 + @총 평균
 	//  3. 석차 순 정렬 (고득점자 부터 출력) - 총 점 기준
 	//  4. Student 클래스의 toString 재정의
 	
-	
-	
 	public static void main(String[] args) {
-		int[] arr = {1,2,3,4,5};
-		int idx = 0;
-		System.arraycopy(arr, idx+1, arr , arr.length, arr.length-1-idx);
-		System.out.println(Arrays.toString(arr));
+		int[] arr = {5, 3, 2, 1, 4, 10, 0, 10, 5, 4};
+		
+		// 선택적 정렬
+		// 탐색 n 최소값
+		// 1회차 : 1, 3, 2, 5, 4
+		// 2회차 : 1, 2, 3, 5, 4
+		// 3회차 : 1, 2, 3, 5, 4
+		// 4회차 : 1, 2, 3, 4, 5
+		for(int i = 0 ; i < arr.length - 1 ; i++) {
+			int idx = i;
+			for(int j = 1 + i ; j < arr.length ; j++) {   
+				if(arr[idx] < arr[j]) {
+					idx = j;
+				}
+			}
+			int tmp = arr[i];
+			arr[i] = arr[idx];
+			arr[idx] = tmp;
+		
+			System.out.println(i + 1 + "회차 :: " + Arrays.toString(arr)); 
+		}
 	}
-}
+}	
+	
+//	public static void main(String[] args) {
+//		int[] arr = {1,2,3,4,5};
+//		int idx = 0;
+//		System.arraycopy(arr, idx+1, arr , arr.length, arr.length-1-idx);
+//		System.out.println(Arrays.toString(arr));
+//	}
+//}

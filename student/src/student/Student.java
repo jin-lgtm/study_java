@@ -18,9 +18,9 @@ public class Student {
 	
 //	int total = kor + eng + mat;
 	
-	Student() {} //  => 기본생성자
+	private Student() {} //  => 기본생성자
 	
-	Student(int no, String name){  // => (학번 , 이름)
+	private Student(int no, String name){  // => (학번 , 이름)
 		this.no = no;
 		this.name = name;
 	}
@@ -38,5 +38,9 @@ public class Student {
 	// 1. 평균계산 (double)
 	double avg() {
 		return total() / 3d;
+	}
+	
+	public String toString() {
+		return String.format("%5d %5s %5d %5d %5d %.6f %5d", no, name, kor, eng, mat, avg(), total());
 	}
 }
